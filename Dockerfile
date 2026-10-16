@@ -1,5 +1,5 @@
-# build the spa first, then serve it and the api from one python process so
-# /api and /ws stay same-origin.
+# build the spa, then serve it and the api from one python process so /api and
+# /ws stay same-origin.
 
 FROM node:20-alpine AS frontend
 WORKDIR /frontend
@@ -11,7 +11,8 @@ RUN npm run build
 
 FROM python:3.13-slim AS runtime
 ENV PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /app/backend
 COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
