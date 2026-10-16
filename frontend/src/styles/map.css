@@ -1,0 +1,99 @@
+.map-container {
+  position: absolute;
+  inset: 0;
+}
+
+.map-container .maplibregl-map {
+  font-family: inherit;
+}
+
+/* the demo/carto basemap ships light labels; tone them down for the dark map */
+.map-container .maplibregl-ctrl-attrib {
+  background: rgba(11, 15, 20, 0.7);
+}
+
+.map-controls {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 5;
+}
+
+.map-controls button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 8px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-controls button:hover {
+  background: var(--panel-2);
+  border-color: var(--accent);
+}
+
+.map-controls button.on {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.selected-marker {
+  pointer-events: none;
+  color: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+.airport-marker {
+  pointer-events: none;
+  color: var(--warn);
+  filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.6));
+}
+
+.aircraft-filters {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 8px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  z-index: 5;
+}
+
+.aircraft-filters label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.aircraft-filters label:hover {
+  color: var(--text);
+}
+
+.panel-hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 24, 32, 0.85);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  z-index: 5;
+}
