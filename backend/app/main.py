@@ -1,7 +1,11 @@
+import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.api.routes import api_router
 from app.core.config import settings
@@ -61,9 +65,33 @@ register_error_handlers(app)
 app.include_router(api_router)
 
 
-@app.get("/")
-def root() -> dict:
-    return {"name": settings.app_name, "docs": "/docs"}
+# in production the built frontend is served from the same origin as the api,
+# so /api and /ws just work without cors or a hardcoded host. in local dev the
+# vite server owns the ui and this directory doesn't exist.
+_FRONTEND_DIST = Path(
+    os.environ.get("FRONTEND_DIST")
+    or (Path(__file__).resolve().parents[1] / "frontend_dist")
+)
+
+if _FRONTEND_DIST.is_dir():
+    _assets = _FRONTEND_DIST / "assets"
+    if _assets.is_dir():
+        app.mount("/assets", StaticFiles(directory=_assets), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def spa(full_path: str) -> FileResponse:
+        # serve real files as-is, and fall back to index.html so client-side
+        # routes like /search survive a refresh
+        candidate = _FRONTEND_DIST / full_path
+        if full_path and candidate.is_file():
+            return FileResponse(candidate)
+        return FileResponse(_FRONTEND_DIST / "index.html")
+
+else:
+
+    @app.get("/")
+    def root() -> dict:
+        return {"name": settings.app_name, "docs": "/docs"}
 
 
 @app.websocket("/ws")
