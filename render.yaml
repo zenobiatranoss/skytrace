@@ -1,0 +1,25 @@
+# Render Blueprint. One web service: the Dockerfile builds the frontend and
+# the backend serves both from the same origin, so /api and /ws need no config.
+services:
+  - type: web
+    name: skytrace
+    runtime: docker
+    plan: free
+    region: frankfurt
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: POSITION_SOURCES
+        value: adsb
+      - key: ADSB_USER_AGENT
+        value: SkyTrace/0.1
+      - key: ADSB_CENTER
+        value: "0,0"
+      - key: ADSB_RADIUS_NM
+        value: "20000"
+      - key: POSITION_REFRESH_SECONDS
+        value: "30"
+      - key: ADSBDB_ENABLED
+        value: "true"
+      - key: LOG_LEVEL
+        value: INFO
