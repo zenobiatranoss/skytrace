@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+# models have to be imported so they're registered on the metadata
+import app.models
 from app.api.routes import api_router
 from app.core.config import settings
 from app.core.errors import register_error_handlers
@@ -17,9 +19,6 @@ from app.services import anomaly_service, data_refresh_service, position_service
 from app.tasks.cleanup_history import start_scheduler, stop_scheduler
 from app.websocket.flight_updates import send_status
 from app.websocket.manager import manager
-
-# models have to be imported so they're registered on the metadata
-import app.models  # noqa: F401
 
 log = get_logger(__name__)
 

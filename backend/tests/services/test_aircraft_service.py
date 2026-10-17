@@ -1,5 +1,4 @@
 import pytest
-
 from app.cache.response_cache import response_cache
 from app.models.flight import Flight
 from app.providers.flight_data import RouteInfo
@@ -80,7 +79,8 @@ class _FakeAdsbDb:
 async def test_detail_enriches_identity_route_and_photo(db, sample_state, monkeypatch):
     from app.cache.aircraft_cache import aircraft_cache
     from app.core.config import settings
-    from app.providers.adsbdb import AircraftInfo, RouteAirport, RouteInfo as AdsbRoute
+    from app.providers.adsbdb import AircraftInfo, RouteAirport
+    from app.providers.adsbdb import RouteInfo as AdsbRoute
 
     response_cache.clear()
     monkeypatch.setattr(settings, "adsbdb_enabled", True)

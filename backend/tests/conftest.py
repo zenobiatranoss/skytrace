@@ -8,14 +8,13 @@ os.environ.setdefault("POSITION_SOURCES", "opensky")
 os.environ.setdefault("ADSBDB_ENABLED", "false")
 
 import pytest
-from fastapi.testclient import TestClient
-
 from app.cache.aircraft_cache import aircraft_cache
 from app.db.base import Base
 from app.db.database import SessionLocal, engine
 from app.main import app
 from app.schemas.aircraft import StateVector
 from app.utils.time import from_epoch, utcnow
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture(scope="session", autouse=True)

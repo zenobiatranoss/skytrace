@@ -9,7 +9,7 @@ log = get_logger(__name__)
 
 
 class AirportRecord:
-    __slots__ = ("icao", "iata", "name", "city", "country", "lat", "lon", "elevation_ft")
+    __slots__ = ("city", "country", "elevation_ft", "iata", "icao", "lat", "lon", "name")
 
     def __init__(self, icao, iata, name, city, country, lat, lon, elevation_ft):
         self.icao = icao

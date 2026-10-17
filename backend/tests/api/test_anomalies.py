@@ -1,5 +1,4 @@
 import pytest
-
 from app.models.anomaly import Anomaly
 from app.repositories import anomaly_repository
 from app.utils.time import utcnow

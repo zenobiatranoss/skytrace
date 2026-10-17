@@ -3,7 +3,7 @@ from app.websocket.manager import ConnectionManager, manager
 
 __all__ = [
     "ConnectionManager",
-    "manager",
     "broadcast_positions",
+    "manager",
     "send_status",
 ]

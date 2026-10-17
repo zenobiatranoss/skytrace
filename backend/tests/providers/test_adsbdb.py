@@ -10,7 +10,7 @@ class _Resp:
 
     def raise_for_status(self):
         if self.status_code >= 400:
-            raise Exception(f"status {self.status_code}")
+            raise Exception(f"status {self.status_code}")  # noqa: TRY002
 
     def json(self):
         return self._payload

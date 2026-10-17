@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 
 from app.core.errors import NotFoundError
 from app.models.flight import Flight
+from app.repositories import flight_repository, track_repository
 from app.schemas.flight import FlightDetail, FlightSummary
 from app.schemas.track import TrackPoint
-from app.repositories import flight_repository, track_repository
 
 
 def list_active(db: Session, limit: int = 100) -> list[FlightSummary]:

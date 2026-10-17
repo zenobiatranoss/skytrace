@@ -17,4 +17,4 @@ class FlightDataProvider(ABC):
 
     async def close(self) -> None:
         """release whatever resource the provider holds"""
-        return None
+        return

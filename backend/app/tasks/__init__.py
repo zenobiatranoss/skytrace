@@ -7,7 +7,7 @@ from app.tasks.refresh_flights import refresh_flights
 
 __all__ = [
     "cleanup_history",
+    "refresh_flights",
     "start_scheduler",
     "stop_scheduler",
-    "refresh_flights",
 ]

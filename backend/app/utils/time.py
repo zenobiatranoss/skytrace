@@ -1,18 +1,18 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 
 def utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def to_epoch(dt: datetime) -> int:
     return int(dt.timestamp())
 
 
-def from_epoch(seconds: int | float | None) -> datetime | None:
+def from_epoch(seconds: float | None) -> datetime | None:
     if seconds is None:
         return None
-    return datetime.fromtimestamp(seconds, tz=timezone.utc)
+    return datetime.fromtimestamp(seconds, tz=UTC)
 
 
 def age_seconds(dt: datetime | None) -> float | None:
@@ -20,5 +20,5 @@ def age_seconds(dt: datetime | None) -> float | None:
     if dt is None:
         return None
     if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
+        dt = dt.replace(tzinfo=UTC)
     return (utcnow() - dt).total_seconds()

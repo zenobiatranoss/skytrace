@@ -5,7 +5,12 @@ from app.cache.response_cache import response_cache
 from app.core.config import settings
 from app.core.errors import NotFoundError, ProviderError
 from app.core.logging import get_logger
-from app.providers.adsbdb import AircraftInfo, RouteAirport, RouteInfo, get_adsbdb_provider
+from app.providers.adsbdb import (
+    AircraftInfo,
+    RouteAirport,
+    RouteInfo,
+    get_adsbdb_provider,
+)
 from app.providers.flight_data import get_route_provider
 from app.repositories import aircraft_repository, flight_repository
 from app.schemas.aircraft import AircraftDetail, AircraftIdentity

@@ -3,7 +3,7 @@ from fastapi import Query
 from app.db.session import get_db
 from app.providers.base import Bounds
 
-__all__ = ["get_db", "get_bounds"]
+__all__ = ["get_bounds", "get_db"]
 
 
 def get_bounds(

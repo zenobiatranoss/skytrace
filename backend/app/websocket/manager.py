@@ -40,7 +40,7 @@ class ConnectionManager:
         for websocket in list(self._connections):
             try:
                 await websocket.send_json(message)
-            except Exception:
+            except Exception:  # noqa: BLE001 - a dead socket shouldn't kill the broadcast
                 dead.append(websocket)
 
         for websocket in dead:

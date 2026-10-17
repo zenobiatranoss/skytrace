@@ -134,7 +134,7 @@ class RefreshLoop:
             await self._tick()
             try:
                 await asyncio.wait_for(self._stop.wait(), timeout=self.interval)
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 pass
 
     def start(self) -> None:

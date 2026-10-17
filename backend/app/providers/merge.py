@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from app.schemas.aircraft import StateVector
 
@@ -21,7 +21,7 @@ FILL_FIELDS = (
     "last_contact",
 )
 
-_EPOCH = datetime(1970, 1, 1, tzinfo=timezone.utc)
+_EPOCH = datetime(1970, 1, 1, tzinfo=UTC)
 
 
 def _recency(state: StateVector) -> datetime:

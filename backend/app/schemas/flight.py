@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.schemas.common import ORMModel
 from app.schemas.track import TrackPoint
@@ -36,4 +36,4 @@ class FlightDetail(FlightOut):
     last_longitude: float | None = None
     last_altitude: float | None = None
     last_velocity: float | None = None
-    track: list[TrackPoint] = []
+    track: list[TrackPoint] = Field(default_factory=list)

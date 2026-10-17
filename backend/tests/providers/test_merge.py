@@ -2,7 +2,6 @@ import asyncio
 from datetime import timedelta
 
 import pytest
-
 from app.core.errors import ProviderError
 from app.providers.base import Bounds, FlightDataProvider
 from app.providers.merge import merge_states

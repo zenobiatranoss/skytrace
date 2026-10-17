@@ -1,10 +1,14 @@
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from sqlalchemy import DateTime, Float, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
 from app.utils.time import utcnow
+
+if TYPE_CHECKING:
+    from app.models.flight import Flight
 
 
 class FlightTrack(Base):

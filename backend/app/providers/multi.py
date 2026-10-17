@@ -33,7 +33,7 @@ class MultiSourceProvider(FlightDataProvider):
 
         good: list[list[StateVector]] = []
         failures: list[str] = []
-        for provider, result in zip(self.providers, results):
+        for provider, result in zip(self.providers, results, strict=True):
             if isinstance(result, Exception):
                 failures.append(f"{provider.name}: {result}")
                 log.warning("position source %s failed: %s", provider.name, result)

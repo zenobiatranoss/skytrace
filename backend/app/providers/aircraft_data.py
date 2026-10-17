@@ -9,7 +9,7 @@ log = get_logger(__name__)
 
 
 class AircraftMetadata:
-    __slots__ = ("icao24", "registration", "type_code", "model", "operator")
+    __slots__ = ("icao24", "model", "operator", "registration", "type_code")
 
     def __init__(self, icao24, registration, type_code, model, operator):
         self.icao24 = icao24
